@@ -91,8 +91,40 @@ bdix-monitor
 
 ### Interactive Mode
 ```bash
-bdix-monitor
-bdix-monitor
+❯ ./bdix-monitor
+[INFO] Checker subsystem initialized
+
+╔═════════════════════════════════════════════════════════╗
+║         BDIX SERVER MONITOR - SECURE C EDITION          ║
+║     Multithreaded FTP, TV, and Media Server Tester      ║
+║                    Version 1.0.0                        ║
+╚═════════════════════════════════════════════════════════╝
+
+[INFO] Server data initialized successfully
+[WARN] File does not exist: data/server.json
+[INFO] Found configuration at: ../data/server.json
+[INFO] Loading servers from: ../data/server.json
+[INFO] Loading configuration from: ../data/server.json
+[INFO] Successfully loaded 891 servers from configuration
+[SUCCESS] Loaded: 596 FTP, 80 TV, 215 other servers
+
+
+╔════════════════════ MENU ══════════════════╗
+║ 1. Check FTP Servers                       ║
+║ 2. Check TV Servers                        ║
+║ 3. Check Other Servers                     ║
+║ 4. Check All Servers                       ║
+║ 5. Set Thread Count (Current: 15)          ║
+║ 6. Toggle Show Only OK (Current: OFF)      ║
+║ 7. Server Statistics                       ║
+║ 8. Reload Configuration                    ║
+║ 9. Save Results to Markdown                ║
+║ 0. Exit                                    ║
+╚════════════════════════════════════════════╝
+
+Enter choice: 0
+[SUCCESS] Exiting... Goodbye!
+[INFO] Checker subsystem cleaned up
 ```
 This will launch an interactive menu in your terminal. Use the arrow keys or number keys to navigate.
 - Options 1-4: Check servers.
