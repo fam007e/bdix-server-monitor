@@ -6,8 +6,15 @@
 
 #include "ui.h"
 #include <stdarg.h>
-#include <sys/ioctl.h>
-#include <unistd.h>
+
+#ifdef _WIN32
+    #include <io.h>
+    #define isatty _isatty
+    #define STDOUT_FILENO 1
+#else
+    #include <sys/ioctl.h>
+    #include <unistd.h>
+#endif
 
 // Global UI state
 static UIConfig g_ui_config = {0};
