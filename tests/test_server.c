@@ -82,9 +82,9 @@ int test_server_update_status(void) {
     memset(&s, 0, sizeof(Server));
     strcpy(s.url, "http://test.com");
 
-    server_update_status(&s, STATUS_ONLINE, 45.5, 200);
+    server_update_status(&s, BDIX_STATUS_ONLINE, 45.5, 200);
 
-    TEST_ASSERT_EQUAL_INT(STATUS_ONLINE, s.status);
+    TEST_ASSERT_EQUAL_INT(BDIX_STATUS_ONLINE, s.status);
     // Floating point comparison needs epsilon, but let's check basic equality for now
     // or use a range if we had a macro. 45.5 should be exact in double usually.
     TEST_ASSERT(s.latency_ms == 45.5, "Latency mismatch");

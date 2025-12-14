@@ -252,6 +252,16 @@ void ui_print_menu(int thread_count, bool only_ok) {
     printf("%s╚════════════════════════════════════════════╝%s\n", c_header, c_reset);
 }
 
+const char* ui_get_status_color(ServerStatus status) {
+    switch (status) {
+        case BDIX_STATUS_ONLINE:  return COLOR_SUCCESS;
+        case BDIX_STATUS_OFFLINE: return COLOR_ERROR;
+        case BDIX_STATUS_TIMEOUT: return COLOR_WARNING;
+        case BDIX_STATUS_ERROR:   return COLOR_LATENCY; // Or maybe COLOR_ERROR if that fits better
+        default:             return COLOR_RESET;
+    }
+}
+
 /**
  * @brief Print server statistics
  */
@@ -295,7 +305,7 @@ static void write_servers_to_file(FILE *f, const char *title, const ServerCatego
 
     bool has_online = false;
     for (size_t i = 0; i < cat->count; i++) {
-        if (cat->servers[i].status == STATUS_ONLINE) {
+        if (cat->servers[i].status == BDIX_STATUS_ONLINE) {
             has_online = true;
             break;
         }
@@ -308,7 +318,7 @@ static void write_servers_to_file(FILE *f, const char *title, const ServerCatego
     fprintf(f, "|------------|---------|\n");
 
     for (size_t i = 0; i < cat->count; i++) {
-        if (cat->servers[i].status == STATUS_ONLINE) {
+        if (cat->servers[i].status == BDIX_STATUS_ONLINE) {
             fprintf(f, "| [%s](%s) | %.2f ms |\n",
                     cat->servers[i].url, cat->servers[i].url,
                     cat->servers[i].latency_ms);
@@ -355,7 +365,7 @@ void ui_print_check_result(const Server *server, const char *category,
                            size_t current, size_t total, bool show_only_ok) {
     if (!server) return;
 
-    bool is_online = (server->status == STATUS_ONLINE);
+    bool is_online = (server->status == BDIX_STATUS_ONLINE);
 
     // Skip if showing only OK and server is not online
     if (show_only_ok && !is_online) {

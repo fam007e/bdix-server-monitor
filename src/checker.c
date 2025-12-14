@@ -97,14 +97,14 @@ int checker_check_server(Server *server, const CheckerConfig *config) {
     ServerStatus status;
     if (res == CURLE_OK) {
         if (response_code >= 200 && response_code < 400) {
-            status = STATUS_ONLINE;
+            status = BDIX_STATUS_ONLINE;
         } else {
-            status = STATUS_OFFLINE;
+            status = BDIX_STATUS_OFFLINE;
         }
     } else if (res == CURLE_OPERATION_TIMEDOUT) {
-        status = STATUS_TIMEOUT;
+        status = BDIX_STATUS_TIMEOUT;
     } else {
-        status = STATUS_ERROR;
+        status = BDIX_STATUS_ERROR;
         LOG_DEBUG("CURL error for %s: %s", server->url, curl_easy_strerror(res));
     }
 
@@ -301,16 +301,16 @@ void checker_stats_update(CheckerStats *stats, const Server *server) {
 
     // Update status counters
     switch (server->status) {
-        case STATUS_ONLINE:
+        case BDIX_STATUS_ONLINE:
             atomic_fetch_add(&stats->online_count, 1);
             break;
-        case STATUS_OFFLINE:
+        case BDIX_STATUS_OFFLINE:
             atomic_fetch_add(&stats->offline_count, 1);
             break;
-        case STATUS_TIMEOUT:
+        case BDIX_STATUS_TIMEOUT:
             atomic_fetch_add(&stats->timeout_count, 1);
             break;
-        case STATUS_ERROR:
+        case BDIX_STATUS_ERROR:
             atomic_fetch_add(&stats->error_count, 1);
             break;
         default:
@@ -318,8 +318,7 @@ void checker_stats_update(CheckerStats *stats, const Server *server) {
     }
 
     // Update latency statistics (only for successful checks)
-    if (server->status == STATUS_ONLINE && server->latency_ms >= 0) {
-        // Update total latency
+    if (server->status == BDIX_STATUS_ONLINE && server->latency_ms >= 0) {
         double current_total = atomic_load(&stats->total_latency_ms);
         while (!atomic_compare_exchange_weak(&stats->total_latency_ms, &current_total,
                                              current_total + server->latency_ms)) {

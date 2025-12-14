@@ -28,17 +28,12 @@ const char* server_category_name(ServerCategoryType type) {
  */
 const char* server_status_name(ServerStatus status) {
     switch (status) {
-        case STATUS_ONLINE:
-            return "Online";
-        case STATUS_OFFLINE:
-            return "Offline";
-        case STATUS_TIMEOUT:
-            return "Timeout";
-        case STATUS_ERROR:
-            return "Error";
-        case STATUS_UNKNOWN:
-        default:
-            return "Unknown";
+        case BDIX_STATUS_UNKNOWN: return "UNKNOWN";
+        case BDIX_STATUS_ONLINE:  return "ONLINE";
+        case BDIX_STATUS_OFFLINE: return "OFFLINE";
+        case BDIX_STATUS_TIMEOUT: return "TIMEOUT";
+        case BDIX_STATUS_ERROR:   return "ERROR";
+        default:                  return "INVALID";
     }
 }
 
@@ -143,7 +138,7 @@ int server_category_add(ServerCategory *category, const char *url) {
     // Initialize server structure
     Server *server = &category->servers[category->count];
     safe_strncpy(server->url, url, MAX_URL_LENGTH);
-    server->status = STATUS_UNKNOWN;
+    server->status = BDIX_STATUS_UNKNOWN;
     server->latency_ms = -1.0;
     server->response_code = 0;
     server->last_checked = 0;

@@ -28,7 +28,7 @@ int test_checker_stats(void) {
 
     Server s;
     memset(&s, 0, sizeof(Server));
-    s.status = STATUS_ONLINE;
+    s.status = BDIX_STATUS_ONLINE;
     s.latency_ms = 100.0;
 
     checker_stats_update(&stats, &s);
@@ -38,7 +38,7 @@ int test_checker_stats(void) {
     TEST_ASSERT_EQUAL_INT(0, stats.offline_count);
     TEST_ASSERT(stats.total_latency_ms == 100.0, "Total latency mismatch");
 
-    s.status = STATUS_OFFLINE;
+    s.status = BDIX_STATUS_OFFLINE;
     checker_stats_update(&stats, &s);
 
     TEST_ASSERT_EQUAL_INT(2, stats.total_checked);

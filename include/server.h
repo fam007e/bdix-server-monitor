@@ -23,11 +23,11 @@ typedef enum {
  * @brief Server status
  */
 typedef enum {
-    STATUS_UNKNOWN,
-    STATUS_ONLINE,
-    STATUS_OFFLINE,
-    STATUS_TIMEOUT,
-    STATUS_ERROR
+    BDIX_STATUS_UNKNOWN,
+    BDIX_STATUS_ONLINE,
+    BDIX_STATUS_OFFLINE,
+    BDIX_STATUS_TIMEOUT,
+    BDIX_STATUS_ERROR
 } ServerStatus;
 
 /**

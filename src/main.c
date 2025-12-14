@@ -72,7 +72,8 @@ static void print_version(void) {
  */
 static int parse_arguments(int argc, char *argv[], ProgramOptions *opts) {
     // Set defaults
-    safe_strncpy(opts->config_file, "data/server.json", sizeof(opts->config_file));
+    // Config file will be determined later if not specified
+    memset(opts->config_file, 0, sizeof(opts->config_file));
     opts->thread_count = DEFAULT_THREADS;
     opts->check_ftp = false;
     opts->check_tv = false;
@@ -323,21 +324,44 @@ int main(int argc, char *argv[]) {
         goto cleanup;
     }
 
+    // Determine configuration file
+    if (strlen(opts.config_file) == 0) {
+        // Try to find configuration in standard locations
+        if (config_validate_file("data/server.json")) {
+            safe_strncpy(opts.config_file, "data/server.json", sizeof(opts.config_file));
+            ui_print_info("Found configuration at: data/server.json\n");
+        } else if (config_validate_file("../data/server.json")) {
+            safe_strncpy(opts.config_file, "../data/server.json", sizeof(opts.config_file));
+            ui_print_info("Found configuration at: ../data/server.json\n");
+        } else {
+            // Default to local data/server.json if nothing found
+            safe_strncpy(opts.config_file, "data/server.json", sizeof(opts.config_file));
+            ui_print_warning("No configuration found, using default: data/server.json\n");
+        }
+    }
+
     // Load configuration
     ui_print_info("Loading servers from: %s\n", opts.config_file);
 
     if (config_load_from_file(opts.config_file, &data) != BDIX_SUCCESS) {
-        ui_print_warning("Failed to load configuration file\n");
-        ui_print_info("Creating sample configuration at data/server.json\n");
+        // Only create sample if we are using the default local path and it failed
+        if (strcmp(opts.config_file, "data/server.json") == 0) {
+            ui_print_warning("Failed to load configuration file\n");
+            ui_print_info("Creating sample configuration at data/server.json\n");
 
-        // Create sample config
-        if (config_create_sample("data/server.json") == BDIX_SUCCESS) {
-            ui_print_success("Sample configuration created. Please edit and rerun.\n");
+            // Create sample config
+            if (config_create_sample("data/server.json") == BDIX_SUCCESS) {
+                ui_print_success("Sample configuration created. Please edit and rerun.\n");
+            } else {
+                ui_print_error("Failed to create sample configuration\n");
+            }
+            ret = EXIT_FAILURE;
+            goto cleanup;
         } else {
-            ui_print_error("Failed to create sample configuration\n");
+            ui_print_error("Failed to load configuration from %s\n", opts.config_file);
+            ret = EXIT_FAILURE;
+            goto cleanup;
         }
-        ret = EXIT_FAILURE;
-        goto cleanup;
     }
 
     ui_print_success("Loaded: %zu FTP, %zu TV, %zu other servers\n\n",
