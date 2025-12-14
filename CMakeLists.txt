@@ -25,6 +25,7 @@ find_package(Threads REQUIRED)
 
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(JANSSON REQUIRED jansson)
+link_directories(${JANSSON_LIBRARY_DIRS})
 
 # Include directories
 include_directories(include)
