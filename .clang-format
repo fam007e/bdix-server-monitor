@@ -1,0 +1,76 @@
+# Based on LLVM style, with some adjustments for C projects
+# and a 4-space indent as suggested by CONTRIBUTING.md.
+BasedOnStyle: LLVM
+Language: Cpp # Applies to C as well
+
+# Indentation
+IndentWidth: 4
+TabWidth: 4
+UseTab: Never
+ContinuationIndentWidth: 4
+
+# Braces
+BreakBeforeBraces: Custom
+BraceWrapping:
+  AfterClass: false
+  AfterControlStatement: Attach
+  AfterEnum: false
+  AfterFunction: Attach
+  AfterStruct: false
+  AfterUnion: false
+  AfterExternBlock: false
+  BeforeCatch: false
+  BeforeElse: false
+  BeforeWhile: false
+  SplitEmptyRecord: false
+
+# Pointers
+PointerAlignment: Left # `int* x` vs `int *x` vs `int * x`
+
+# Spaces
+SpaceBeforeAssignmentOperators: true
+SpaceBeforeParens: ControlStatements # `if (...)` vs `if(...)`
+SpaceAfterCStyleCast: false
+SpacesInParentheses: false
+SpacesInAngles: false
+SpacesInSquares: false
+AlignTrailingComments: true
+AlwaysBreakAfterReturnType: None # `int main()` vs `int\nmain()`
+AlwaysBreakBeforeMultilineStrings: false
+
+# Line Breaking
+ColumnLimit: 80 # Or a reasonable value, e.g., 100 or 120
+BreakBeforeBinaryOperators: None # `a + b` vs `a\n+ b`
+BreakBeforeTernaryOperators: true
+BinPackParameters: true # Pack function parameters if they fit on one line
+BinPackArguments: true # Pack function arguments if they fit on one line
+AllowShortIfStatementsOnASingleLine: false
+AllowShortLoopsOnASingleLine: false
+AllowShortCaseLabelsOnASingleLine: false
+AllowShortFunctionsOnASingleLine: None
+
+# Includes
+IncludeBlocks: Preserve
+IncludeCategories:
+  - Regex: '^<.*$'
+    Priority: 1
+    SortPriority: 0
+  - Regex: '^\".*$' # Escaped quote for regex
+    Priority: 2
+    SortPriority: 0
+IncludeIsMainSource: false # Set to true if headers should be sorted based on their main .cpp/.c file
+
+# Formatting specific to C
+# No specific C options, defaults inherited from Cpp are usually fine.
+# If later needed, can use `Language: C` and then customize.
+# For now, Cpp is a superset and mostly applies.
+
+# Example:
+# int main(int argc, char *argv[]) {
+#     if (argc > 1) {
+#         printf("Hello, %s!\n", argv[1]);
+#     } else {
+#         printf("Hello, World!\n");
+#     }
+#     return 0;
+# }

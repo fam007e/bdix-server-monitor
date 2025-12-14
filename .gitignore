@@ -1,55 +1,48 @@
-# Prerequisites
-*.d
-
-# Object files
+# Compiled executables and object files
+bin/
+obj/
 *.o
-*.ko
-*.obj
-*.elf
-
-# Linker output
-*.ilk
-*.map
-*.exp
-
-# Precompiled Headers
-*.gch
-*.pch
-
-# Libraries
-*.lib
-*.a
-*.la
-*.lo
-
-# Shared objects (inc. Windows DLLs)
-*.dll
+*.d
 *.so
-*.so.*
-*.dylib
+*.a
+*.lo
+*.la
+*.slo
 
-# Executables
-*.exe
-*.out
-*.app
-*.i*86
-*.x86_64
-*.hex
+# Build directories
+build/
+.cache/
 
-# Debug files
-*.dSYM/
-*.su
-*.idb
-*.pdb
+# Editor specific files
+*~
+#*#
+.DS_Store
+.vscode/
+.idea/
+*.swp
+*.swo
+.project
+.cproject
+.settings/
 
-# Kernel Module Compile Results
-*.mod*
-*.cmd
-.tmp_versions/
-modules.order
-Module.symvers
-Mkfile.old
-dkms.conf
+# Test specific files
+test_sample_config.json
 
-# debug information files
-*.dwo
+# Dependencies managed by package managers (if any)
+# For C, often not applicable unless using vcpkg, conan etc.
+# vcpkg/
+# conan/
+
+# OS generated files
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs and temporary files
+*.log
+*.tmp
+tmp/
+
+# Saved check results
+bdix_results*
+

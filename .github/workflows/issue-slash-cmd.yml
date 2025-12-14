@@ -1,0 +1,47 @@
+name: Issue Slash Command
+
+on:
+  issue_comment:
+    types: [created]
+
+jobs:
+  handle_slash_command:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Extract command and arguments
+        id: extract_command
+        run: |
+          COMMENT_BODY="${{ github.event.comment.body }}"
+          if [[ "$COMMENT_BODY" == "/assign "* ]]; then
+            COMMAND="assign"
+            ARGS="${COMMENT_BODY#/assign }"
+            echo "command=$COMMAND" >> $GITHUB_OUTPUT
+            echo "args=$ARGS" >> $GITHUB_OUTPUT
+          elif [[ "$COMMENT_BODY" == "/label "* ]]; then
+            COMMAND="label"
+            ARGS="${COMMENT_BODY#/label }"
+            echo "command=$COMMAND" >> $GITHUB_OUTPUT
+            echo "args=$ARGS" >> $GITHUB_OUTPUT
+          # Add more commands here
+          else
+            echo "No recognized slash command"
+            exit 0
+          fi
+
+      - name: Run Assign Command
+        if: steps.extract_command.outputs.command == 'assign'
+        uses: peter-evans/create-or-update-comment@v2
+        with:
+          issue-number: ${{ github.event.issue.number }}
+          body: "`/assign` command not yet implemented fully. Assigning user: @${{ steps.extract_command.outputs.args }}"
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Run Label Command
+        if: steps.extract_command.outputs.command == 'label'
+        uses: peter-evans/create-or-update-comment@v2
+        with:
+          issue-number: ${{ github.event.issue.number }}
+          body: "`/label` command not yet implemented fully. Applying label: `${{ steps.extract_command.outputs.args }}`"
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      # Add more steps for other commands

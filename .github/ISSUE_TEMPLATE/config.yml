@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: GitHub Discussions
+    url: https://github.com/fam007e/bdix-server-monitor/discussions
+    about: Ask questions and discuss ideas with other community members.
+  - name: Email Maintainer
+    url: mailto:faisalmoshiur+bdixftp@gmail.com
+    about: Contact the project maintainer directly for private inquiries.
