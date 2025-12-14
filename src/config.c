@@ -227,13 +227,19 @@ int config_create_sample(const char *filename) {
     LOG_INFO("Creating sample configuration at: %s", filename);
 
     // Create directory if needed
+#ifdef _WIN32
+    #include <direct.h>
+    #define fs_mkdir(path, mode) _mkdir(path)
+#else
+    #define fs_mkdir(path, mode) mkdir(path, mode)
+#endif
     char dir_path[MAX_PATH_LENGTH];
     safe_strncpy(dir_path, filename, sizeof(dir_path));
 
     char *last_slash = strrchr(dir_path, '/');
     if (last_slash) {
         *last_slash = '\0';
-        mkdir(dir_path, 0755);  // Create directory, ignore errors if exists
+        fs_mkdir(dir_path, 0755);  // Create directory, ignore errors if exists
     }
 
     // Open file for writing
