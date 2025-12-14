@@ -18,7 +18,6 @@ static int parse_server_array(json_t *array, ServerCategory *category) {
 
     size_t index;
     json_t *value;
-    int added = 0;
 
     json_array_foreach(array, index, value) {
         if (!json_is_string(value)) {
@@ -33,14 +32,12 @@ static int parse_server_array(json_t *array, ServerCategory *category) {
         }
 
         // Add server to category
-        if (server_category_add(category, url) == BDIX_SUCCESS) {
-            added++;
-        } else {
+        if (server_category_add(category, url) != BDIX_SUCCESS) {
             LOG_WARN("Failed to add server: %s", url);
         }
     }
 
-    LOG_DEBUG("Added %d servers to category '%s'", added, category->name);
+    LOG_DEBUG("Finished parsing category '%s'", category->name);
     return BDIX_SUCCESS;
 }
 
