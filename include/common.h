@@ -73,19 +73,19 @@
 /* flawfinder: ignore - all format strings in LOG_* macros are compile-time constants */
 #ifdef DEBUG
     #define LOG_DEBUG(fmt, ...) \
-        fprintf(stderr, "[DEBUG] %s:%d: " fmt "\n", __FILE__, __LINE__, ##__VA_ARGS__)
+        fprintf(stderr, "[DEBUG] %s:%d: " fmt "\n", __FILE__, __LINE__, ##__VA_ARGS__) // flawfinder: ignore
 #else
     #define LOG_DEBUG(fmt, ...) do {} while(0)
 #endif
 
 #define LOG_INFO(fmt, ...) \
-    fprintf(stdout, "[INFO] " fmt "\n", ##__VA_ARGS__)
+    fprintf(stdout, "[INFO] " fmt "\n", ##__VA_ARGS__) // flawfinder: ignore
 
 #define LOG_WARN(fmt, ...) \
-    fprintf(stderr, "[WARN] " fmt "\n", ##__VA_ARGS__)
+    fprintf(stderr, "[WARN] " fmt "\n", ##__VA_ARGS__) // flawfinder: ignore
 
 #define LOG_ERROR(fmt, ...) \
-    fprintf(stderr, "[ERROR] %s:%d: " fmt "\n", __FILE__, __LINE__, ##__VA_ARGS__)
+    fprintf(stderr, "[ERROR] %s:%d: " fmt "\n", __FILE__, __LINE__, ##__VA_ARGS__) // flawfinder: ignore
 
 // Memory allocation wrappers with error checking
 static inline void* safe_malloc(size_t size) {

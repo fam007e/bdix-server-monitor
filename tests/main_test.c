@@ -21,10 +21,10 @@ static int g_tests_failed = 0;
 
 #define PRINT_TEST_SUMMARY() \
     do { \
-        printf("\n" TEST_COLOR_BOLD "Test Summary:" TEST_COLOR_RESET "\n"); \
-        printf("  Total:  %d\n", g_tests_run); \
-        printf("  Passed: " TEST_COLOR_GREEN "%d" TEST_COLOR_RESET "\n", g_tests_passed); \
-        printf("  Failed: " TEST_COLOR_RED "%d" TEST_COLOR_RESET "\n", g_tests_failed); \
+        printf("\n" TEST_COLOR_BOLD "Test Summary:" TEST_COLOR_RESET "\n"); /* flawfinder: ignore */ \
+        printf("  Total:  %d\n", g_tests_run); /* flawfinder: ignore */ \
+        printf("  Passed: " TEST_COLOR_GREEN "%d" TEST_COLOR_RESET "\n", g_tests_passed); /* flawfinder: ignore */ \
+        printf("  Failed: " TEST_COLOR_RED "%d" TEST_COLOR_RESET "\n", g_tests_failed); /* flawfinder: ignore */ \
     } while (0)
 
 // External declarations for test functions
@@ -52,14 +52,14 @@ int main(void) {
     RUN_TEST(test_server_category_resize);
     RUN_TEST(test_server_data_lifecycle);
     RUN_TEST(test_server_update_status);
-    printf("\n");
+    printf("\n"); // flawfinder: ignore
 
     // Checker Tests
     printf(TEST_COLOR_BOLD "--- Checker Module Tests ---\n" TEST_COLOR_RESET); // flawfinder: ignore
     RUN_TEST(test_checker_init_cleanup);
     RUN_TEST(test_checker_config);
     RUN_TEST(test_checker_stats);
-    printf("\n");
+    printf("\n"); // flawfinder: ignore
 
     // Config Tests
     printf(TEST_COLOR_BOLD "--- Config Module Tests ---\n" TEST_COLOR_RESET); // flawfinder: ignore

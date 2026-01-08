@@ -381,28 +381,28 @@ void checker_stats_print(const CheckerStats *stats) {
     double max_latency = atomic_load(&stats->max_latency_ms);
     double avg_latency = checker_stats_get_avg_latency(stats);
 
-    printf("\n");
-    printf("═══════════════════════════════════════════\n");
-    printf("           CHECK STATISTICS\n");
-    printf("═══════════════════════════════════════════\n");
-    printf("Total Checked:   %5zu\n", total);
-    printf("───────────────────────────────────────────\n");
-    printf("Online:          %5zu  (%.1f%%)\n", online,
+    printf("\n"); // flawfinder: ignore
+    printf("═══════════════════════════════════════════\n"); // flawfinder: ignore
+    printf("           CHECK STATISTICS\n"); // flawfinder: ignore
+    printf("═══════════════════════════════════════════\n"); // flawfinder: ignore
+    printf("Total Checked:   %5zu\n", total); // flawfinder: ignore
+    printf("───────────────────────────────────────────\n"); // flawfinder: ignore
+    printf("Online:          %5zu  (%.1f%%)\n", online, // flawfinder: ignore
            total > 0 ? (online * 100.0 / total) : 0.0);
-    printf("Offline:         %5zu  (%.1f%%)\n", offline,
+    printf("Offline:         %5zu  (%.1f%%)\n", offline, // flawfinder: ignore
            total > 0 ? (offline * 100.0 / total) : 0.0);
-    printf("Timeout:         %5zu  (%.1f%%)\n", timeout,
+    printf("Timeout:         %5zu  (%.1f%%)\n", timeout, // flawfinder: ignore
            total > 0 ? (timeout * 100.0 / total) : 0.0);
-    printf("Error:           %5zu  (%.1f%%)\n", error,
+    printf("Error:           %5zu  (%.1f%%)\n", error, // flawfinder: ignore
            total > 0 ? (error * 100.0 / total) : 0.0);
 
     if (online > 0) {
-        printf("───────────────────────────────────────────\n");
-        printf("Min Latency:     %.2f ms\n", min_latency);
-        printf("Max Latency:     %.2f ms\n", max_latency);
-        printf("Avg Latency:     %.2f ms\n", avg_latency);
+        printf("───────────────────────────────────────────\n"); // flawfinder: ignore
+        printf("Min Latency:     %.2f ms\n", min_latency); // flawfinder: ignore
+        printf("Max Latency:     %.2f ms\n", max_latency); // flawfinder: ignore
+        printf("Avg Latency:     %.2f ms\n", avg_latency); // flawfinder: ignore
     }
 
-    printf("═══════════════════════════════════════════\n");
-    printf("\n");
+    printf("═══════════════════════════════════════════\n"); // flawfinder: ignore
+    printf("\n"); // flawfinder: ignore
 }

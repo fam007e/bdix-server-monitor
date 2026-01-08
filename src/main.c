@@ -35,27 +35,27 @@ typedef struct {
  */
 /* flawfinder: ignore - all printf calls below use compile-time constant format strings */
 static void print_usage(const char *program_name) {
-    printf("Usage: %s [OPTIONS]\n\n", program_name);
-    printf("BDIX Server Monitor - Check FTP, TV, and other BDIX servers\n\n");
-    printf("Options:\n");
-    printf("  -c, --config FILE      Configuration file (default: data/server.json)\n");
-    printf("  -t, --threads NUM      Number of threads (default: %d, range: %d-%d)\n",
+    printf("Usage: %s [OPTIONS]\n\n", program_name); // flawfinder: ignore
+    printf("BDIX Server Monitor - Check FTP, TV, and other BDIX servers\n\n"); // flawfinder: ignore
+    printf("Options:\n"); // flawfinder: ignore
+    printf("  -c, --config FILE      Configuration file (default: data/server.json)\n"); // flawfinder: ignore
+    printf("  -t, --threads NUM      Number of threads (default: %d, range: %d-%d)\n", // flawfinder: ignore
            DEFAULT_THREADS, MIN_THREADS, MAX_THREADS);
-    printf("  -f, --ftp              Check only FTP servers\n");
-    printf("  -v, --tv               Check only TV servers\n");
-    printf("  -o, --others           Check only other servers\n");
-    printf("  -a, --all              Check all servers (default)\n");
-    printf("  -q, --quiet            Show only successful checks\n");
-    printf("  -n, --no-color         Disable colored output\n");
-    printf("  -i, --interactive      Start in interactive mode (default)\n");
-    printf("  -s, --stats            Show statistics only\n");
-    printf("  -h, --help             Show this help message\n");
-    printf("  -V, --version          Show version information\n");
-    printf("\nExamples:\n");
-    printf("  %s                           # Interactive mode\n", program_name);
-    printf("  %s --all --threads 32        # Check all with 32 threads\n", program_name);
-    printf("  %s --ftp --quiet             # Check FTP, show only OK\n", program_name);
-    printf("\n");
+    printf("  -f, --ftp              Check only FTP servers\n"); // flawfinder: ignore
+    printf("  -v, --tv               Check only TV servers\n"); // flawfinder: ignore
+    printf("  -o, --others           Check only other servers\n"); // flawfinder: ignore
+    printf("  -a, --all              Check all servers (default)\n"); // flawfinder: ignore
+    printf("  -q, --quiet            Show only successful checks\n"); // flawfinder: ignore
+    printf("  -n, --no-color         Disable colored output\n"); // flawfinder: ignore
+    printf("  -i, --interactive      Start in interactive mode (default)\n"); // flawfinder: ignore
+    printf("  -s, --stats            Show statistics only\n"); // flawfinder: ignore
+    printf("  -h, --help             Show this help message\n"); // flawfinder: ignore
+    printf("  -V, --version          Show version information\n"); // flawfinder: ignore
+    printf("\nExamples:\n"); // flawfinder: ignore
+    printf("  %s                           # Interactive mode\n", program_name); // flawfinder: ignore
+    printf("  %s --all --threads 32        # Check all with 32 threads\n", program_name); // flawfinder: ignore
+    printf("  %s --ftp --quiet             # Check FTP, show only OK\n", program_name); // flawfinder: ignore
+    printf("\n"); // flawfinder: ignore
 }
 
 /**
@@ -63,10 +63,10 @@ static void print_usage(const char *program_name) {
  */
 /* flawfinder: ignore - all printf calls below use compile-time constant format strings */
 static void print_version(void) {
-    printf("BDIX Server Monitor v%s\n", BDIX_VERSION_STRING);
-    printf("Built: %s %s\n", __DATE__, __TIME__);
-    printf("Compiler: GCC %d.%d.%d\n", __GNUC__, __GNUC_MINOR__, __GNUC_PATCHLEVEL__);
-    printf("\n");
+    printf("BDIX Server Monitor v%s\n", BDIX_VERSION_STRING); // flawfinder: ignore
+    printf("Built: %s %s\n", __DATE__, __TIME__); // flawfinder: ignore
+    printf("Compiler: GCC %d.%d.%d\n", __GNUC__, __GNUC_MINOR__, __GNUC_PATCHLEVEL__); // flawfinder: ignore
+    printf("\n"); // flawfinder: ignore
 }
 
 /**

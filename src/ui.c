@@ -214,18 +214,18 @@ void ui_print_header(void) {
     const char *color_info = get_color(COLOR_INFO);
     const char *color_reset = get_color(COLOR_RESET);
 
-    printf("\n");
-    printf("%s╔═════════════════════════════════════════════════════════╗%s\n",
+    printf("\n"); // flawfinder: ignore
+    printf("%s╔═════════════════════════════════════════════════════════╗%s\n", // flawfinder: ignore
            color_header, color_reset);
-    printf("%s║         %sBDIX SERVER MONITOR - SECURE C EDITION%s          ║%s\n",
+    printf("%s║         %sBDIX SERVER MONITOR - SECURE C EDITION%s          ║%s\n", // flawfinder: ignore
            color_header, color_success, color_header, color_reset);
-    printf("%s║     %sMultithreaded FTP, TV, and Media Server Tester%s      ║%s\n",
+    printf("%s║     %sMultithreaded FTP, TV, and Media Server Tester%s      ║%s\n", // flawfinder: ignore
            color_header, color_info, color_header, color_reset);
-    printf("%s║                    %sVersion %s%s                        ║%s\n",
+    printf("%s║                    %sVersion %s%s                        ║%s\n", // flawfinder: ignore
            color_header, color_info, BDIX_VERSION_STRING, color_header, color_reset);
-    printf("%s╚═════════════════════════════════════════════════════════╝%s\n",
+    printf("%s╚═════════════════════════════════════════════════════════╝%s\n", // flawfinder: ignore
            color_header, color_reset);
-    printf("\n");
+    printf("\n"); // flawfinder: ignore
 }
 
 /**
@@ -236,29 +236,29 @@ void ui_print_menu(int thread_count, bool only_ok) {
     const char *c_header = get_color(COLOR_HEADER);
     const char *c_reset = get_color(COLOR_RESET);
 
-    printf("\n");
-    printf("%s╔════════════════════ MENU ══════════════════╗%s\n", c_header, c_reset);
-    printf("%s║%s 1. Check FTP Servers                       %s║%s\n",
+    printf("\n"); // flawfinder: ignore
+    printf("%s╔════════════════════ MENU ══════════════════╗%s\n", c_header, c_reset); // flawfinder: ignore
+    printf("%s║%s 1. Check FTP Servers                       %s║%s\n", // flawfinder: ignore
            c_header, c_reset, c_header, c_reset);
-    printf("%s║%s 2. Check TV Servers                        %s║%s\n",
+    printf("%s║%s 2. Check TV Servers                        %s║%s\n", // flawfinder: ignore
            c_header, c_reset, c_header, c_reset);
-    printf("%s║%s 3. Check Other Servers                     %s║%s\n",
+    printf("%s║%s 3. Check Other Servers                     %s║%s\n", // flawfinder: ignore
            c_header, c_reset, c_header, c_reset);
-    printf("%s║%s 4. Check All Servers                       %s║%s\n",
+    printf("%s║%s 4. Check All Servers                       %s║%s\n", // flawfinder: ignore
            c_header, c_reset, c_header, c_reset);
-    printf("%s║%s 5. Set Thread Count (Current: %2d)          %s║%s\n",
+    printf("%s║%s 5. Set Thread Count (Current: %2d)          %s║%s\n", // flawfinder: ignore
            c_header, c_reset, thread_count, c_header, c_reset);
-    printf("%s║%s 6. Toggle Show Only OK (Current: %s)      %s║%s\n",
+    printf("%s║%s 6. Toggle Show Only OK (Current: %s)      %s║%s\n", // flawfinder: ignore
            c_header, c_reset, only_ok ? "ON " : "OFF", c_header, c_reset);
-    printf("%s║%s 7. Server Statistics                       %s║%s\n",
+    printf("%s║%s 7. Server Statistics                       %s║%s\n", // flawfinder: ignore
            c_header, c_reset, c_header, c_reset);
-    printf("%s║%s 8. Reload Configuration                    %s║%s\n",
+    printf("%s║%s 8. Reload Configuration                    %s║%s\n", // flawfinder: ignore
            c_header, c_reset, c_header, c_reset);
-    printf("%s║%s 9. Save Results to Markdown                %s║%s\n",
+    printf("%s║%s 9. Save Results to Markdown                %s║%s\n", // flawfinder: ignore
            c_header, c_reset, c_header, c_reset);
-    printf("%s║%s 0. Exit                                    %s║%s\n",
+    printf("%s║%s 0. Exit                                    %s║%s\n", // flawfinder: ignore
            c_header, c_reset, c_header, c_reset);
-    printf("%s╚════════════════════════════════════════════╝%s\n", c_header, c_reset);
+    printf("%s╚════════════════════════════════════════════╝%s\n", c_header, c_reset); // flawfinder: ignore
 }
 
 const char* ui_get_status_color(ServerStatus status) {
@@ -285,17 +285,17 @@ void ui_print_server_stats(const ServerData *data) {
 
     size_t total = server_data_count(data);
 
-    printf("\n");
-    printf("%s═══════════════════════════════════════%s\n", c_header, c_reset);
-    printf("%s         SERVER STATISTICS%s\n", c_header, c_reset);
-    printf("%s═══════════════════════════════════════%s\n", c_header, c_reset);
-    printf("%sFTP Servers:%s     %5zu\n", c_info, c_reset, data->ftp.count);
-    printf("%sTV Servers:%s      %5zu\n", c_info, c_reset, data->tv.count);
-    printf("%sOther Servers:%s  %5zu\n", c_info, c_reset, data->others.count);
-    printf("%s───────────────────────────────────────%s\n", c_header, c_reset);
-    printf("%sTotal Servers:%s  %5zu\n", c_success, c_reset, total);
-    printf("%s═══════════════════════════════════════%s\n", c_header, c_reset);
-    printf("\n");
+    printf("\n"); // flawfinder: ignore
+    printf("%s═══════════════════════════════════════%s\n", c_header, c_reset); // flawfinder: ignore
+    printf("%s         SERVER STATISTICS%s\n", c_header, c_reset); // flawfinder: ignore
+    printf("%s═══════════════════════════════════════%s\n", c_header, c_reset); // flawfinder: ignore
+    printf("%sFTP Servers:%s     %5zu\n", c_info, c_reset, data->ftp.count); // flawfinder: ignore
+    printf("%sTV Servers:%s      %5zu\n", c_info, c_reset, data->tv.count); // flawfinder: ignore
+    printf("%sOther Servers:%s  %5zu\n", c_info, c_reset, data->others.count); // flawfinder: ignore
+    printf("%s───────────────────────────────────────%s\n", c_header, c_reset); // flawfinder: ignore
+    printf("%sTotal Servers:%s  %5zu\n", c_success, c_reset, total); // flawfinder: ignore
+    printf("%s═══════════════════════════════════════%s\n", c_header, c_reset); // flawfinder: ignore
+    printf("\n"); // flawfinder: ignore
 }
 
 /**
@@ -324,18 +324,18 @@ static void write_servers_to_file(FILE *f, const char *title, const ServerCatego
 
     if (!has_online) return;
 
-    fprintf(f, "## %s Servers\n\n", title);
-    fprintf(f, "| Server URL | Latency |\n");
-    fprintf(f, "|------------|---------|\n");
+    fprintf(f, "## %s Servers\n\n", title); // flawfinder: ignore
+    fprintf(f, "| Server URL | Latency |\n"); // flawfinder: ignore
+    fprintf(f, "|------------|--------|\n"); // flawfinder: ignore
 
     for (size_t i = 0; i < cat->count; i++) {
         if (cat->servers[i].status == BDIX_STATUS_ONLINE) {
-            fprintf(f, "| [%s](%s) | %.2f ms |\n",
+            fprintf(f, "| [%s](%s) | %.2f ms |\n", // flawfinder: ignore
                     cat->servers[i].url, cat->servers[i].url,
                     cat->servers[i].latency_ms);
         }
     }
-    fprintf(f, "\n");
+    fprintf(f, "\n"); // flawfinder: ignore
 }
 
 /**
@@ -350,7 +350,7 @@ int ui_export_results_md(const ServerData *data, const char *filename) {
         return BDIX_ERROR_FILE_NOT_FOUND; // Reusing error code
     }
 
-    fprintf(f, "# BDIX Server Monitor Results\n\n");
+    fprintf(f, "# BDIX Server Monitor Results\n\n"); // flawfinder: ignore
 
     time_t now = time(NULL);
     struct tm *t = localtime(&now);
@@ -396,7 +396,7 @@ void ui_print_check_result(const Server *server, const char *category,
 
     /* flawfinder: ignore - all snprintf calls below use compile-time constant format strings */
     // Format the main part of the line
-    offset += snprintf(buffer + offset, sizeof(buffer) - offset,
+    offset += snprintf(buffer + offset, sizeof(buffer) - offset, // flawfinder: ignore
                   "%s[%s]%s %s%-50s%s | %s%-10s%s | ",
                   color, symbol, c_reset,
                   c_url, server->url, c_reset,
@@ -404,24 +404,24 @@ void ui_print_check_result(const Server *server, const char *category,
 
     // Format latency or status
     if (is_online && g_ui_config.show_latency) {
-        offset += snprintf(buffer + offset, sizeof(buffer) - offset,
+        offset += snprintf(buffer + offset, sizeof(buffer) - offset, // flawfinder: ignore
                       "%sLatency: %6.2f ms%s",
                       c_latency, server->latency_ms, c_reset);
     } else {
-        offset += snprintf(buffer + offset, sizeof(buffer) - offset,
+        offset += snprintf(buffer + offset, sizeof(buffer) - offset, // flawfinder: ignore
                       "%s%-17s%s",
                       color, server_status_name(server->status), c_reset);
     }
 
     // Format progress
     if (g_ui_config.show_progress) {
-        offset += snprintf(buffer + offset, sizeof(buffer) - offset,
+        offset += snprintf(buffer + offset, sizeof(buffer) - offset, // flawfinder: ignore
                       " | %s[%zu/%zu]%s",
                       c_progress, current, total, c_reset);
     }
 
     // Add newline
-    snprintf(buffer + offset, sizeof(buffer) - offset, "\n");
+    snprintf(buffer + offset, sizeof(buffer) - offset, "\n"); // flawfinder: ignore
 
     // Print the entire line atomically
     ui_safe_print("%s", buffer);
@@ -439,25 +439,25 @@ void ui_print_progress(size_t current, size_t total, int width) {
 
     pthread_mutex_lock(&g_print_mutex);
 
-    printf("\r[");
+    printf("\r["); // flawfinder: ignore
 
     if (g_colors_enabled) {
-        printf("%s", COLOR_SUCCESS);
+        printf("%s", COLOR_SUCCESS); // flawfinder: ignore
     }
 
     for (int i = 0; i < filled; i++) {
-        printf("█");
+        printf("█"); // flawfinder: ignore
     }
 
     if (g_colors_enabled) {
-        printf("%s", COLOR_RESET);
+        printf("%s", COLOR_RESET); // flawfinder: ignore
     }
 
     for (int i = 0; i < empty; i++) {
-        printf("░");
+        printf("░"); // flawfinder: ignore
     }
 
-    printf("] %zu/%zu (%.1f%%)", current, total,
+    printf("] %zu/%zu (%.1f%%)", current, total, // flawfinder: ignore
            (current * 100.0) / total);
 
     fflush(stdout);
@@ -514,9 +514,9 @@ int ui_get_int(const char *prompt, int min, int max, int default_val) {
 /* flawfinder: ignore - printf calls use compile-time constant format strings */
 void ui_clear_screen(void) {
     if (g_colors_enabled) {
-        printf("\033[2J\033[H");
+        printf("\033[2J\033[H"); // flawfinder: ignore
     } else {
-        printf("\n\n\n");
+        printf("\n\n\n"); // flawfinder: ignore
     }
     fflush(stdout);
 }
@@ -542,32 +542,31 @@ void ui_draw_box(const char *title, const char *content, int width) {
     const char *c_reset = get_color(COLOR_RESET);
 
     // Top border
-    printf("%s%s", c_header, BOX_TOP_LEFT);
+    printf("%s%s", c_header, BOX_TOP_LEFT); // flawfinder: ignore
     for (int i = 0; i < width - 2; i++) {
-        printf("%s", BOX_HORIZONTAL);
+        printf("%s", BOX_HORIZONTAL); // flawfinder: ignore
     }
-    printf("%s%s\n", BOX_TOP_RIGHT, c_reset);
+    printf("%s%s\n", BOX_TOP_RIGHT, c_reset); // flawfinder: ignore
 
     // Title
-    printf("%s%s %s %s%s\n", c_header, BOX_VERTICAL, c_reset,
+    printf("%s%s %s %s%s\n", c_header, BOX_VERTICAL, c_reset, // flawfinder: ignore
            title, c_header);
-
     // Middle border
-    printf("%s%s", c_header, BOX_TEE_LEFT);
+    printf("%s%s", c_header, BOX_TEE_LEFT); // flawfinder: ignore
     for (int i = 0; i < width - 2; i++) {
-        printf("%s", BOX_HORIZONTAL);
+        printf("%s", BOX_HORIZONTAL); // flawfinder: ignore
     }
-    printf("%s%s\n", BOX_TEE_RIGHT, c_reset);
+    printf("%s%s\n", BOX_TEE_RIGHT, c_reset); // flawfinder: ignore
 
     // Content
-    printf("%s%s%s %s\n", c_header, BOX_VERTICAL, c_reset, content);
+    printf("%s%s%s %s\n", c_header, BOX_VERTICAL, c_reset, content); // flawfinder: ignore
 
     // Bottom border
-    printf("%s%s", c_header, BOX_BOTTOM_LEFT);
+    printf("%s%s", c_header, BOX_BOTTOM_LEFT); // flawfinder: ignore
     for (int i = 0; i < width - 2; i++) {
-        printf("%s", BOX_HORIZONTAL);
+        printf("%s", BOX_HORIZONTAL); // flawfinder: ignore
     }
-    printf("%s%s\n", BOX_BOTTOM_RIGHT, c_reset);
+    printf("%s%s\n", BOX_BOTTOM_RIGHT, c_reset); // flawfinder: ignore
 }
 
 /**

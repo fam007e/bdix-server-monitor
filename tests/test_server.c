@@ -45,10 +45,10 @@ int test_server_category_resize(void) {
     // We add 100 to force resize
     for (int i = 0; i < 100; i++) {
         char url[64]; // flawfinder: ignore
-        snprintf(url, sizeof(url), "http://server%d.com", i);
+        snprintf(url, sizeof(url), "http://server%d.com", i); // flawfinder: ignore
         int res = server_category_add(&cat, url);
         if (res != BDIX_SUCCESS) {
-            printf("Failed to add server %d\n", i);
+            printf("Failed to add server %d\n", i); // flawfinder: ignore
             server_category_free(&cat);
             return 0;
         }

@@ -282,15 +282,15 @@ void server_data_print_stats(const ServerData *data) {
         return;
     }
 
-    printf("\n");
-    printf("═══════════════════════════════\n");
-    printf("     SERVER STATISTICS\n");
-    printf("═══════════════════════════════\n");
-    printf("FTP Servers:     %5zu\n", data->ftp.count);
-    printf("TV Servers:      %5zu\n", data->tv.count);
-    printf("Other Servers:   %5zu\n", data->others.count);
-    printf("───────────────────────────────\n");
-    printf("Total Servers:   %5zu\n", server_data_count(data));
-    printf("═══════════════════════════════\n");
-    printf("\n");
+    printf("\n"); // flawfinder: ignore
+    printf("═══════════════════════════════\n"); // flawfinder: ignore
+    printf("     SERVER STATISTICS\n"); // flawfinder: ignore
+    printf("═══════════════════════════════\n"); // flawfinder: ignore
+    printf("FTP Servers:     %5zu\n", data->ftp.count); // flawfinder: ignore
+    printf("TV Servers:      %5zu\n", data->tv.count); // flawfinder: ignore
+    printf("Other Servers:   %5zu\n", data->others.count); // flawfinder: ignore
+    printf("───────────────────────────────\n"); // flawfinder: ignore
+    printf("Total Servers:   %5zu\n", server_data_count(data)); // flawfinder: ignore
+    printf("═══════════════════════════════\n"); // flawfinder: ignore
+    printf("\n"); // flawfinder: ignore
 }

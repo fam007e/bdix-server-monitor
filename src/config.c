@@ -251,25 +251,25 @@ int config_create_sample(const char *filename) {
 
     // Write sample JSON configuration
     /* flawfinder: ignore - all format strings below are compile-time constants */
-    fprintf(fp, "{\n");
-    fprintf(fp, "  \"ftp\": [\n");
-    fprintf(fp, "    \"http://ftp.amigait.com\",\n");
-    fprintf(fp, "    \"http://ftp.dhakacom.net\",\n");
-    fprintf(fp, "    \"http://ftp.circleftp.net\",\n");
-    fprintf(fp, "    \"http://ftp.somewhereinblog.net\",\n");
-    fprintf(fp, "    \"http://server1.amader.gov.bd\"\n");
-    fprintf(fp, "  ],\n");
-    fprintf(fp, "  \"tv\": [\n");
-    fprintf(fp, "    \"http://tv.bdix.app\",\n");
-    fprintf(fp, "    \"http://iptv.live.net.bd\",\n");
-    fprintf(fp, "    \"http://bdixsports.com\"\n");
-    fprintf(fp, "  ],\n");
-    fprintf(fp, "  \"others\": [\n");
-    fprintf(fp, "    \"http://cache.google.com\",\n");
-    fprintf(fp, "    \"http://mirror.dhakacom.com\",\n");
-    fprintf(fp, "    \"http://bdix.net\"\n");
-    fprintf(fp, "  ]\n");
-    fprintf(fp, "}\n");
+    fprintf(fp, "{\n"); // flawfinder: ignore
+    fprintf(fp, "  \"ftp\": [\n"); // flawfinder: ignore
+    fprintf(fp, "    \"http://ftp.amigait.com\",\n"); // flawfinder: ignore
+    fprintf(fp, "    \"http://ftp.dhakacom.net\",\n"); // flawfinder: ignore
+    fprintf(fp, "    \"http://ftp.circleftp.net\",\n"); // flawfinder: ignore
+    fprintf(fp, "    \"http://ftp.somewhereinblog.net\",\n"); // flawfinder: ignore
+    fprintf(fp, "    \"http://server1.amader.gov.bd\"\n"); // flawfinder: ignore
+    fprintf(fp, "  ],\n"); // flawfinder: ignore
+    fprintf(fp, "  \"tv\": [\n"); // flawfinder: ignore
+    fprintf(fp, "    \"http://tv.bdix.app\",\n"); // flawfinder: ignore
+    fprintf(fp, "    \"http://iptv.live.net.bd\",\n"); // flawfinder: ignore
+    fprintf(fp, "    \"http://bdixsports.com\"\n"); // flawfinder: ignore
+    fprintf(fp, "  ],\n"); // flawfinder: ignore
+    fprintf(fp, "  \"others\": [\n"); // flawfinder: ignore
+    fprintf(fp, "    \"http://cache.google.com\",\n"); // flawfinder: ignore
+    fprintf(fp, "    \"http://mirror.dhakacom.com\",\n"); // flawfinder: ignore
+    fprintf(fp, "    \"http://bdix.net\"\n"); // flawfinder: ignore
+    fprintf(fp, "  ]\n"); // flawfinder: ignore
+    fprintf(fp, "}\n"); // flawfinder: ignore
 
     fclose(fp);
 
