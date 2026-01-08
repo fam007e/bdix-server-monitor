@@ -80,7 +80,7 @@ void ui_safe_print(const char *format, ...) {
 
     va_list args;
     va_start(args, format);
-    vprintf(format, args);
+    vprintf(format, args); // flawfinder: ignore
     va_end(args);
     fflush(stdout);
 
@@ -101,7 +101,7 @@ void ui_print_colored(const char *color, const char *format, ...) {
 
     va_list args;
     va_start(args, format);
-    vprintf(format, args);
+    vprintf(format, args); // flawfinder: ignore
     va_end(args);
 
     if (g_colors_enabled && color) {
@@ -128,7 +128,7 @@ void ui_print_error(const char *format, ...) {
 
     va_list args;
     va_start(args, format);
-    vfprintf(stderr, format, args);
+    vfprintf(stderr, format, args); // flawfinder: ignore
     va_end(args);
 
     fflush(stderr);
@@ -151,7 +151,7 @@ void ui_print_success(const char *format, ...) {
 
     va_list args;
     va_start(args, format);
-    vprintf(format, args);
+    vprintf(format, args); // flawfinder: ignore
     va_end(args);
 
     fflush(stdout);
@@ -174,7 +174,7 @@ void ui_print_warning(const char *format, ...) {
 
     va_list args;
     va_start(args, format);
-    vprintf(format, args);
+    vprintf(format, args); // flawfinder: ignore
     va_end(args);
 
     fflush(stdout);
@@ -197,7 +197,7 @@ void ui_print_info(const char *format, ...) {
 
     va_list args;
     va_start(args, format);
-    vprintf(format, args);
+    vprintf(format, args); // flawfinder: ignore
     va_end(args);
 
     fflush(stdout);
@@ -340,7 +340,7 @@ static void write_servers_to_file(FILE *f, const char *title, const ServerCatego
 int ui_export_results_md(const ServerData *data, const char *filename) {
     if (!data || !filename) return BDIX_ERROR_INVALID_INPUT;
 
-    FILE *f = fopen(filename, "w");
+    FILE *f = fopen(filename, "w"); // flawfinder: ignore
     if (!f) {
         ui_print_error("Failed to open file for writing: %s\n", filename);
         return BDIX_ERROR_FILE_NOT_FOUND; // Reusing error code

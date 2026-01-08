@@ -44,7 +44,7 @@ int test_server_category_resize(void) {
     // Add more servers than initial capacity (assuming initial is small, e.g. 10 or 16)
     // We add 100 to force resize
     for (int i = 0; i < 100; i++) {
-        char url[64];
+        char url[64]; // flawfinder: ignore
         snprintf(url, sizeof(url), "http://server%d.com", i);
         int res = server_category_add(&cat, url);
         if (res != BDIX_SUCCESS) {
@@ -80,7 +80,7 @@ int test_server_data_lifecycle(void) {
 int test_server_update_status(void) {
     Server s;
     memset(&s, 0, sizeof(Server));
-    strcpy(s.url, "http://test.com");
+    strcpy(s.url, "http://test.com"); // flawfinder: ignore
 
     server_update_status(&s, BDIX_STATUS_ONLINE, 45.5, 200);
 

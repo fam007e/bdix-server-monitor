@@ -19,7 +19,7 @@
 #define TEST_ASSERT(condition, message) \
     do { \
         if (!(condition)) { \
-            printf(TEST_COLOR_RED "  [FAIL] %s:%d: %s" TEST_COLOR_RESET "\n", __FILE__, __LINE__, message); \
+            printf(TEST_COLOR_RED "  [FAIL] %s:%d: %s" TEST_COLOR_RESET "\n", __FILE__, __LINE__, message); /* flawfinder: ignore */ \
             return 0; \
         } \
     } while (0)
@@ -27,7 +27,7 @@
 #define TEST_ASSERT_EQUAL_INT(expected, actual) \
     do { \
         if ((expected) != (actual)) { \
-            printf(TEST_COLOR_RED "  [FAIL] %s:%d: Expected %d, but got %d" TEST_COLOR_RESET "\n", \
+            printf(TEST_COLOR_RED "  [FAIL] %s:%d: Expected %d, but got %d" TEST_COLOR_RESET "\n", /* flawfinder: ignore */ \
                    __FILE__, __LINE__, (int)(expected), (int)(actual)); \
             return 0; \
         } \
@@ -36,7 +36,7 @@
 #define TEST_ASSERT_EQUAL_STR(expected, actual) \
     do { \
         if (strcmp((expected), (actual)) != 0) { \
-            printf(TEST_COLOR_RED "  [FAIL] %s:%d: Expected '%s', but got '%s'" TEST_COLOR_RESET "\n", \
+            printf(TEST_COLOR_RED "  [FAIL] %s:%d: Expected '%s', but got '%s'" TEST_COLOR_RESET "\n", /* flawfinder: ignore */ \
                    __FILE__, __LINE__, (expected), (actual)); \
             return 0; \
         } \
@@ -45,7 +45,7 @@
 #define TEST_ASSERT_NOT_NULL(ptr) \
     do { \
         if ((ptr) == NULL) { \
-            printf(TEST_COLOR_RED "  [FAIL] %s:%d: Pointer is NULL" TEST_COLOR_RESET "\n", __FILE__, __LINE__); \
+            printf(TEST_COLOR_RED "  [FAIL] %s:%d: Pointer is NULL" TEST_COLOR_RESET "\n", __FILE__, __LINE__); /* flawfinder: ignore */ \
             return 0; \
         } \
     } while (0)

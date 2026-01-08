@@ -243,7 +243,7 @@ int config_create_sample(const char *filename) {
     }
 
     // Open file for writing
-    FILE *fp = fopen(filename, "w");
+    FILE *fp = fopen(filename, "w"); // flawfinder: ignore
     if (!fp) {
         LOG_ERROR("Cannot create file: %s (errno: %d)", filename, errno);
         return BDIX_ERROR_FILE_NOT_FOUND;

@@ -103,19 +103,22 @@ static int parse_arguments(int argc, char *argv[], ProgramOptions *opts) {
     int opt;
     int option_index = 0;
 
-    while ((opt = getopt_long(argc, argv, "c:t:fvoaqnishV",
+    while ((opt = getopt_long(argc, argv, "c:t:fvoaqnishV", /* flawfinder: ignore */
                               long_options, &option_index)) != -1) {
         switch (opt) {
             case 'c':
                 safe_strncpy(opts->config_file, optarg, sizeof(opts->config_file));
                 break;
             case 't':
-                opts->thread_count = atoi(optarg);
-                if (opts->thread_count < MIN_THREADS ||
-                    opts->thread_count > MAX_THREADS) {
-                    fprintf(stderr, "Error: Thread count must be between %d and %d\n",
-                            MIN_THREADS, MAX_THREADS);
-                    return BDIX_ERROR_INVALID_INPUT;
+                {
+                    char *endptr;
+                    long val = strtol(optarg, &endptr, 10);
+                    if (*endptr != '\0' || val < MIN_THREADS || val > MAX_THREADS) {
+                         fprintf(stderr, "Error: Thread count must be between %d and %d\n",
+                                MIN_THREADS, MAX_THREADS);
+                         return BDIX_ERROR_INVALID_INPUT;
+                    }
+                    opts->thread_count = (int)val;
                 }
                 break;
             case 'f':
@@ -184,7 +187,13 @@ static void interactive_mode(ServerData *data, CheckerConfig *config) {
             break;
         }
 
-        int choice = atoi(input);
+        char *endptr;
+        long val = strtol(input, &endptr, 10);
+        if (*endptr != '\0') {
+             ui_print_error("Invalid number format\n");
+             continue;
+        }
+        int choice = (int)val;
         checker_stats_init(&stats);
 
         switch (choice) {

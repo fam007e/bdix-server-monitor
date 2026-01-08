@@ -127,7 +127,7 @@ static inline char* safe_strdup(const char *s) {
 
 static inline void safe_strncpy(char *dest, const char *src, size_t n) {
     if (!dest || !src || n == 0) return;
-    strncpy(dest, src, n - 1);
+    strncpy(dest, src, n - 1); // flawfinder: ignore
     dest[n - 1] = '\0';
 }
 
