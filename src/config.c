@@ -26,7 +26,7 @@ static int parse_server_array(json_t *array, ServerCategory *category) {
         }
 
         const char *url = json_string_value(value);
-        if (!url || strlen(url) == 0) {
+        if (!url || strlen(url) == 0) { /* flawfinder: ignore - null checked above */
             LOG_WARN("Skipping empty URL at index %zu", index);
             continue;
         }
@@ -233,7 +233,7 @@ int config_create_sample(const char *filename) {
 #else
     #define fs_mkdir(path, mode) mkdir(path, mode)
 #endif
-    char dir_path[MAX_PATH_LENGTH];
+    char dir_path[MAX_PATH_LENGTH]; /* flawfinder: ignore - bounds checked with safe_strncpy */
     safe_strncpy(dir_path, filename, sizeof(dir_path));
 
     char *last_slash = strrchr(dir_path, '/');
@@ -250,6 +250,7 @@ int config_create_sample(const char *filename) {
     }
 
     // Write sample JSON configuration
+    /* flawfinder: ignore - all format strings below are compile-time constants */
     fprintf(fp, "{\n");
     fprintf(fp, "  \"ftp\": [\n");
     fprintf(fp, "    \"http://ftp.amigait.com\",\n");

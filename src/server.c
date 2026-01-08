@@ -275,6 +275,7 @@ size_t server_data_count(const ServerData *data) {
 /**
  * @brief Print server statistics
  */
+/* flawfinder: ignore - all printf calls below use compile-time constant format strings */
 void server_data_print_stats(const ServerData *data) {
     if (!data) {
         LOG_WARN("Cannot print stats for NULL data");

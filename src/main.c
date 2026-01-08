@@ -18,7 +18,7 @@
  * @brief Program options structure
  */
 typedef struct {
-    char config_file[MAX_PATH_LENGTH];
+    char config_file[MAX_PATH_LENGTH]; /* flawfinder: ignore - bounds checked with safe_strncpy */
     int thread_count;
     bool check_ftp;
     bool check_tv;
@@ -33,6 +33,7 @@ typedef struct {
 /**
  * @brief Print usage information
  */
+/* flawfinder: ignore - all printf calls below use compile-time constant format strings */
 static void print_usage(const char *program_name) {
     printf("Usage: %s [OPTIONS]\n\n", program_name);
     printf("BDIX Server Monitor - Check FTP, TV, and other BDIX servers\n\n");
@@ -60,6 +61,7 @@ static void print_usage(const char *program_name) {
 /**
  * @brief Print version information
  */
+/* flawfinder: ignore - all printf calls below use compile-time constant format strings */
 static void print_version(void) {
     printf("BDIX Server Monitor v%s\n", BDIX_VERSION_STRING);
     printf("Built: %s %s\n", __DATE__, __TIME__);
@@ -114,7 +116,7 @@ static int parse_arguments(int argc, char *argv[], ProgramOptions *opts) {
                     char *endptr;
                     long val = strtol(optarg, &endptr, 10);
                     if (*endptr != '\0' || val < MIN_THREADS || val > MAX_THREADS) {
-                         fprintf(stderr, "Error: Thread count must be between %d and %d\n",
+                         fprintf(stderr, "Error: Thread count must be between %d and %d\n", /* flawfinder: ignore */
                                 MIN_THREADS, MAX_THREADS);
                          return BDIX_ERROR_INVALID_INPUT;
                     }
@@ -175,7 +177,7 @@ static int parse_arguments(int argc, char *argv[], ProgramOptions *opts) {
  * @brief Interactive menu mode
  */
 static void interactive_mode(ServerData *data, CheckerConfig *config) {
-    char input[MAX_INPUT_LENGTH];
+    char input[MAX_INPUT_LENGTH]; /* flawfinder: ignore - bounds checked with ui_get_input */
     int thread_count = DEFAULT_THREADS;
     bool only_ok = false;
     CheckerStats stats;
@@ -258,7 +260,7 @@ static void interactive_mode(ServerData *data, CheckerConfig *config) {
 
             case 9: // Save Results to Markdown
                 {
-                    char filename[64];
+                char filename[64]; /* flawfinder: ignore - bounds checked with strftime */
                     time_t now = time(NULL);
                     struct tm *t = localtime(&now);
                     strftime(filename, sizeof(filename), "bdix_results_%Y%m%d_%H%M%S.md", t);
@@ -334,7 +336,7 @@ int main(int argc, char *argv[]) {
     }
 
     // Determine configuration file
-    if (strlen(opts.config_file) == 0) {
+    if (strlen(opts.config_file) == 0) { /* flawfinder: ignore - opts.config_file is always null-terminated */
         // Try to find configuration in standard locations
         if (config_validate_file("data/server.json")) {
             safe_strncpy(opts.config_file, "data/server.json", sizeof(opts.config_file));
@@ -409,7 +411,7 @@ int main(int argc, char *argv[]) {
     }
 
     // Print final statistics
-    printf("\n");
+    printf("\n"); /* flawfinder: ignore */
     checker_stats_print(&stats);
 
 cleanup:

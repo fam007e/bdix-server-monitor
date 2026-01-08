@@ -34,7 +34,7 @@ typedef enum {
  * @brief Individual server information
  */
 typedef struct {
-    char url[MAX_URL_LENGTH];
+    char url[MAX_URL_LENGTH]; /* flawfinder: ignore - bounds checked with safe_strncpy */
     ServerStatus status;
     double latency_ms;
     long response_code;

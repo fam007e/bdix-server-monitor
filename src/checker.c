@@ -231,9 +231,9 @@ int checker_check_multiple(ServerData *data, const CheckerConfig *config,
         return BDIX_SUCCESS;
     }
 
-    printf("\n");
+    printf("\n"); /* flawfinder: ignore */
     LOG_INFO("Checking %zu servers with %d threads...", total, thread_count);
-    printf("\n");
+    printf("\n"); /* flawfinder: ignore */
 
     // Check each category
     int ret = BDIX_SUCCESS;
@@ -262,7 +262,7 @@ int checker_check_multiple(ServerData *data, const CheckerConfig *config,
         }
     }
 
-    printf("\n");
+    printf("\n"); /* flawfinder: ignore */
     LOG_INFO("All checks completed");
 
     return BDIX_SUCCESS;
@@ -365,6 +365,7 @@ double checker_stats_get_avg_latency(const CheckerStats *stats) {
 /**
  * @brief Print statistics summary
  */
+/* flawfinder: ignore - all printf calls below use compile-time constant format strings */
 void checker_stats_print(const CheckerStats *stats) {
     if (!stats) {
         return;

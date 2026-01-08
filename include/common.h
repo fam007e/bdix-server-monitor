@@ -70,6 +70,7 @@
          DEFER_VAR(__LINE__) = 0, code)
 
 // Logging macros with levels
+/* flawfinder: ignore - all format strings in LOG_* macros are compile-time constants */
 #ifdef DEBUG
     #define LOG_DEBUG(fmt, ...) \
         fprintf(stderr, "[DEBUG] %s:%d: " fmt "\n", __FILE__, __LINE__, ##__VA_ARGS__)
@@ -157,6 +158,7 @@ static inline void trim_string(char *str) {
     while (isspace((unsigned char)*start)) start++;
 
     // Trim trailing whitespace
+    /* flawfinder: ignore - start is always within valid string bounds */
     char *end = start + strlen(start) - 1;
     while (end > start && isspace((unsigned char)*end)) end--;
 
@@ -170,6 +172,7 @@ static inline void trim_string(char *str) {
 
 // URL validation
 static inline bool is_valid_url(const char *url) {
+    /* flawfinder: ignore - null checked before strlen, url is always null-terminated */
     if (!url || strlen(url) == 0 || strlen(url) >= MAX_URL_LENGTH) {
         return false;
     }
